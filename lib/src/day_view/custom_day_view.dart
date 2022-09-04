@@ -509,7 +509,6 @@ class CustomDayViewState<T extends Object?> extends State<CustomDayView<T>> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(DateFormat('EEE').format(date)),
-          //  Text(Constants.weekTitles[date.weekday - 1]),
           Text(date.day.toString()),
         ],
       ),

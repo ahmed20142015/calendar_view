@@ -3,6 +3,7 @@
 // that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../components/_internal_components.dart';
 import '../components/event_scroll_notifier.dart';
@@ -140,6 +141,20 @@ class InternalWeekViewPage<T extends Object?> extends StatelessWidget {
                 SizedBox(
                   height: weekTitleHeight,
                   width: timeLineWidth,
+                  child: Center(child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('${dates.last.day}',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w300),),
+                          Text(DateFormat('MMM').format(DateTime(0, dates.last.month))
+                            ,style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
+                        ],
+                      ),
+                      Icon(Icons.keyboard_arrow_down_rounded)
+                    ],
+                  )),
                 ),
                 ...List.generate(
                   filteredDates.length,
