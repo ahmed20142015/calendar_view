@@ -176,6 +176,8 @@ class _CustomInternalWeekViewPageState<T extends Object?> extends State<CustomIn
                       },
                       child: Container(
                         height: 44,
+                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: (filteredDates[index] == widget.selectedDateTime)?

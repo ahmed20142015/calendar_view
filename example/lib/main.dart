@@ -66,6 +66,14 @@ List<CalendarEventData<Event>> _events = [
     description: "Go to football tournament.",
   ),
   CalendarEventData(
+    date: _now,
+    startTime: DateTime(_now.year, _now.month, _now.day, 15),
+    endTime: DateTime(_now.year, _now.month, _now.day, 16),
+    event: Event(title: "Football Tournament"),
+    title: "Football Tournament",
+    description: "Go to football tournament.",
+  ),
+  CalendarEventData(
     date: _now.add(Duration(days: 3)),
     startTime: DateTime(_now.add(Duration(days: 3)).year,
         _now.add(Duration(days: 3)).month, _now.add(Duration(days: 3)).day, 10),

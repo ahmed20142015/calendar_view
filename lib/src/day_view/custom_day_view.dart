@@ -508,8 +508,14 @@ class CustomDayViewState<T extends Object?> extends State<CustomDayView<T>> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(DateFormat('EEE').format(date)),
-          Text(date.day.toString()),
+          Text(DateFormat('EEE').format(date),
+            style: TextStyle(fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: Color(0xff979797)),),
+          Text(date.day.toString(),
+            style: TextStyle(fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Color(0xff979797)),),
         ],
       ),
     );
