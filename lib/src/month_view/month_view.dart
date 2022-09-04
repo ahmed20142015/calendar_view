@@ -255,10 +255,10 @@ class MonthViewState<T extends Object?> extends State<MonthView<T>> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: _width,
-              child: _headerBuilder(_currentDate),
-            ),
+            // Container(
+            //   width: _width,
+            //   child: _headerBuilder(_currentDate),
+            // ),
             Expanded(
               child: PageView.builder(
                 controller: _pageController,

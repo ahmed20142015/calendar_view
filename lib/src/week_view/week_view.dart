@@ -321,7 +321,7 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              _weekHeaderBuilder(_currentStartDate, _currentEndDate),
+            //  _weekHeaderBuilder(_currentStartDate, _currentEndDate),
               Expanded(
                 child: SizedBox(
                   height: _height,

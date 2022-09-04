@@ -320,7 +320,7 @@ class CustomDayViewState<T extends Object?> extends State<CustomDayView<T>> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              _weekHeaderBuilder(_currentStartDate, _currentEndDate),
+             // _weekHeaderBuilder(_currentStartDate, _currentEndDate),
               Expanded(
                 child: SizedBox(
                   height: _height,
