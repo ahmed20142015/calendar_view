@@ -99,7 +99,7 @@ extension DateTimeExtensions on DateTime {
   /// Returns total minutes this date is pointing at.
   /// if [DateTime] object is, DateTime(2021, 5, 13, 12, 4, 5)
   /// Then this getter will return 12*60 + 4 which evaluates to 724.
-  int get getTotalMinutes => hour * 60 + minute;
+  int get getTotalMinutes => hour * 60 + minute+second~/60;
 
   /// Returns a new [DateTime] object with hour and minutes calculated from
   /// [totalMinutes].
