@@ -132,7 +132,8 @@ class FilledCell<T extends Object?> extends StatelessWidget {
                     : isInMonth
                         ? titleColor
                         : titleColor.withOpacity(0.4),
-                fontSize: 12,
+                fontSize: 10,
+                fontWeight: FontWeight.w400
               ),
             ),
           ),
@@ -152,29 +153,28 @@ class FilledCell<T extends Object?> extends StatelessWidget {
                         onTap: () =>
                             onTileTap?.call(events[index], events[index].date),
                         child: Container(
+                          height: 12,
                           decoration: BoxDecoration(
                             color: events[index].color,
                             borderRadius: BorderRadius.circular(4.0),
                           ),
-                          margin: EdgeInsets.symmetric(
-                              vertical: 2.0, horizontal: 3.0),
-                          padding: const EdgeInsets.all(2.0),
+                          margin: EdgeInsets.symmetric(vertical: 1, horizontal: 1),
                           alignment: Alignment.center,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  events[index].title,
-                                  overflow: TextOverflow.clip,
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                    color: events[index].color.accent,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          // child: Row(
+                          //   children: [
+                          //     Expanded(
+                          //       child: Text(
+                          //         events[index].title,
+                          //         overflow: TextOverflow.clip,
+                          //         maxLines: 1,
+                          //         style: TextStyle(
+                          //           color: events[index].color.accent,
+                          //           fontSize: 12,
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                         ),
                       ),
                     ),
@@ -251,8 +251,9 @@ class WeekDayTile extends StatelessWidget {
         Constants.weekTitles[dayIndex],
         style: textStyle ??
             TextStyle(
-              fontSize: 17,
-              color: Constants.black,
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: Color(0xff6E6E6E),
             ),
       ),
     );
