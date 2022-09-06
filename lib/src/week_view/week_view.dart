@@ -502,7 +502,7 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
   }
 
   /// Default builder for week line.
-  Widget _defaultWeekDayBuilder(DateTime date) {
+  Widget _defaultWeekDayBuilder(DateTime date,DateTime d) {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -519,7 +519,7 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
   /// Default timeline builder this builder will be used if
   /// [widget.eventTileBuilder] is null
   ///
-  Widget _defaultTimeLineBuilder(DateTime date) {
+  Widget _defaultTimeLineBuilder(DateTime date,DateTime d) {
     return Transform.translate(
       offset: Offset(0, -7.5),
       child: Padding(

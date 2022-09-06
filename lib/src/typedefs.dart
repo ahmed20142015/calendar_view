@@ -26,7 +26,7 @@ typedef WeekDayBuilder = Widget Function(
 );
 
 typedef DateWidgetBuilder = Widget Function(
-  DateTime date,
+  DateTime date,DateTime selected
 );
 
 typedef CalendarPageChangeCallBack = void Function(DateTime date, int page);

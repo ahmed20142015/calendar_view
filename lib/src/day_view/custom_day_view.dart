@@ -502,7 +502,7 @@ class CustomDayViewState<T extends Object?> extends State<CustomDayView<T>> {
   }
 
   /// Default builder for week line.
-  Widget _defaultWeekDayBuilder(DateTime date) {
+  Widget _defaultWeekDayBuilder(DateTime date,DateTime d) {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -511,11 +511,11 @@ class CustomDayViewState<T extends Object?> extends State<CustomDayView<T>> {
           Text(DateFormat('EEE').format(date),
             style: TextStyle(fontSize: 10,
               fontWeight: FontWeight.w400,
-              color: Color(0xff979797)),),
+              color: (date.isAtSameMomentAs(d))?Colors.white:Color(0xff979797)),),
           Text(date.day.toString(),
             style: TextStyle(fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Color(0xff979797)),),
+                color: (date.isAtSameMomentAs(d))?Colors.white:Color(0xff979797)),),
         ],
       ),
     );
@@ -524,7 +524,7 @@ class CustomDayViewState<T extends Object?> extends State<CustomDayView<T>> {
   /// Default timeline builder this builder will be used if
   /// [widget.eventTileBuilder] is null
   ///
-  Widget _defaultTimeLineBuilder(DateTime date) {
+  Widget _defaultTimeLineBuilder(DateTime date,DateTime da) {
     return Transform.translate(
       offset: Offset(0, -7.5),
       child: Padding(

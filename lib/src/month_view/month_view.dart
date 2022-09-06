@@ -415,7 +415,7 @@ class MonthViewState<T extends Object?> extends State<MonthView<T>> {
   }
 
   /// Default month view header builder
-  Widget _defaultHeaderBuilder(DateTime date) {
+  Widget _defaultHeaderBuilder(DateTime date,DateTime d) {
     return MonthPageHeader(
       onTitleTapped: () async {
         final selectedDate = await showDatePicker(

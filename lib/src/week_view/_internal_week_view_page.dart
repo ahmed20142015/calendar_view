@@ -162,7 +162,7 @@ class InternalWeekViewPage<T extends Object?> extends StatelessWidget {
                     height: weekTitleHeight,
                     width: weekTitleWidth,
                     child: weekDayBuilder(
-                      filteredDates[index],
+                      filteredDates[index],DateTime.now()
                     ),
                   ),
                 )

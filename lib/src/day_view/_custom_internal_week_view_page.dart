@@ -154,9 +154,14 @@ class _CustomInternalWeekViewPageState<T extends Object?> extends State<CustomIn
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          if(widget.dates.contains(widget.selectedDateTime))
                           Text('${widget.selectedDateTime.day}',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w300),),
-                          Text(DateFormat('MMM').format(DateTime(0, widget.selectedDateTime.month))
-                            ,style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
+                          if(!widget.dates.contains(widget.selectedDateTime))
+                          Text('${widget.dates.first.day}',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w300),),
+                          if(widget.dates.contains(widget.selectedDateTime))
+                          Text(DateFormat('MMM').format(DateTime(0, widget.selectedDateTime.month)),style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
+                          if(!widget.dates.contains(widget.selectedDateTime))
+                          Text(DateFormat('MMM').format(DateTime(0, widget.dates.first.month)),style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
                         ],
                       ),
                       Icon(Icons.keyboard_arrow_down_rounded)
@@ -184,7 +189,7 @@ class _CustomInternalWeekViewPageState<T extends Object?> extends State<CustomIn
                               Color(0xff1479FF):Colors.transparent
                         ),
                         child: widget.weekDayBuilder(
-                          filteredDates[index],
+                          filteredDates[index],widget.selectedDateTime
                         ),
                       ),
                     ),
