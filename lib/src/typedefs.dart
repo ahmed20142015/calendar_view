@@ -22,7 +22,7 @@ typedef EventTileBuilder<T extends Object?> = Widget Function(
 );
 
 typedef WeekDayBuilder = Widget Function(
-  int day,
+  int day,DateTime date
 );
 
 typedef DateWidgetBuilder = Widget Function(
