@@ -63,6 +63,8 @@ class CalendarEventData<T extends Object?> {
         "title": title,
         "description": description,
         "endDate": endDate,
+        "rangedDates": rangedDates,
+        "isRange": isRange,
       };
 
   @override
