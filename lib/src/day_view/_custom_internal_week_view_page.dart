@@ -201,10 +201,10 @@ class _CustomInternalWeekViewPageState<T extends Object?> extends State<CustomIn
               ],
             ),
           ),
-          widget.dateEventsWidgetBuilder(widget.controller.getEventsOnDay(widget.selectedDateTime).where((element) => element.isDate!).toList(),MediaQuery.of(context).size.width-(widget.weekTitleWidth)),
+         widget.dateEventsWidgetBuilder(widget.controller.getEventsOnDay(widget.selectedDateTime).where((element) => element.isDate!).toList(),MediaQuery.of(context).size.width-(widget.timeLineWidth)),
           // Container(
           //   height: widget.weekTitleHeight,
-          //   width: MediaQuery.of(context).size.width-(widget.weekTitleWidth),
+          //   width: MediaQuery.of(context).size.width-(widget.timeLineWidth),
           //   color: Colors.blue,
           // ),
           Expanded(
