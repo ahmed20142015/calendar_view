@@ -138,6 +138,7 @@ class CustomDayView<T extends Object?> extends StatefulWidget {
   /// Defines size of the slots that provides long press callback on area
   /// where events are not there.
   final MinuteSlotSize minuteSlotSize;
+  final DateEventsWidgetBuilder? dateEventsWidgetBuilder;
 
   /// Main widget for week view.
   const CustomDayView({
@@ -162,6 +163,7 @@ class CustomDayView<T extends Object?> extends StatefulWidget {
     this.eventArranger,
     this.weekTitleHeight = 50,
     this.weekDayBuilder,
+    this.dateEventsWidgetBuilder,
     this.backgroundColor = Colors.white,
     this.scrollOffset = 0.0,
     this.onEventTap,
@@ -341,7 +343,7 @@ class CustomDayViewState<T extends Object?> extends State<CustomDayView<T>> {
                                 dates[0].toString()),
                             height: _height,
                             width: _width,
-                            dateEventsWidgetBuilder:(e)=>Container(),
+                            dateEventsWidgetBuilder:widget.dateEventsWidgetBuilder??(e)=>Container(),
                             weekTitleWidth: _weekTitleWidth,
                             weekTitleHeight: widget.weekTitleHeight,
                             weekDayBuilder: _weekDayBuilder,
