@@ -36,6 +36,8 @@ class CalendarEventData<T extends Object?> {
   final T? event;
 
   final DateTime? _endDate;
+  final List<DateTime>? rangedDates;
+  final bool? isRange;
 
   /// Stores all the events on [date]
   const CalendarEventData({
@@ -45,6 +47,8 @@ class CalendarEventData<T extends Object?> {
     this.color = Colors.blue,
     this.startTime,
     this.endTime,
+    this.rangedDates=const[],
+    this.isRange=false,
     DateTime? endDate,
     required this.date,
   }) : _endDate = endDate;

@@ -28,6 +28,7 @@ typedef WeekDayBuilder = Widget Function(
 typedef DateWidgetBuilder = Widget Function(
   DateTime date,DateTime selected
 );
+typedef  DateEventsWidgetBuilder = Widget Function(List<CalendarEventData> events);
 
 typedef CalendarPageChangeCallBack = void Function(DateTime date, int page);
 

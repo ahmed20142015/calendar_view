@@ -66,6 +66,7 @@ class CustomInternalWeekViewPage<T extends Object?> extends StatefulWidget {
 
   /// Builder for week day title.
   final DateWidgetBuilder weekDayBuilder;
+  final DateEventsWidgetBuilder dateEventsWidgetBuilder;
 
   /// Height of week title.
   final double weekTitleHeight;
@@ -124,6 +125,7 @@ class CustomInternalWeekViewPage<T extends Object?> extends StatefulWidget {
     required this.minuteSlotSize,
     required this.scrollConfiguration,
     required this.selectedDateTime,
+    required this.dateEventsWidgetBuilder,
   }) : super(key: key);
 
   @override
@@ -199,11 +201,12 @@ class _CustomInternalWeekViewPageState<T extends Object?> extends State<CustomIn
               ],
             ),
           ),
-          Container(
-            height: widget.weekTitleHeight,
-            width: MediaQuery.of(context).size.width-(widget.weekTitleWidth),
-            color: Colors.blue,
-          ),
+          widget.dateEventsWidgetBuilder(widget.controller.getEventsOnDay(widget.selectedDateTime).where((element) => !element.startTime.toString().contains(':')).toList()),
+          // Container(
+          //   height: widget.weekTitleHeight,
+          //   width: MediaQuery.of(context).size.width-(widget.weekTitleWidth),
+          //   color: Colors.blue,
+          // ),
           Expanded(
             child: SingleChildScrollView(
               controller: widget.scrollController,

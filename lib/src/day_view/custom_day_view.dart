@@ -341,6 +341,7 @@ class CustomDayViewState<T extends Object?> extends State<CustomDayView<T>> {
                                 dates[0].toString()),
                             height: _height,
                             width: _width,
+                            dateEventsWidgetBuilder:(e)=>Container(),
                             weekTitleWidth: _weekTitleWidth,
                             weekTitleHeight: widget.weekTitleHeight,
                             weekDayBuilder: _weekDayBuilder,

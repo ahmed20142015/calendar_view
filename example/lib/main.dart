@@ -14,10 +14,62 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+ class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
+  void initState() {
+    var days = getDaysInBetween(DateTime(2022, 09, 12,13,00),DateTime(2022, 09, 14,13,00));
+    for(var day in days){
+      if (days.first == day) {
+        _events.add(
+          CalendarEventData(
+            date: day,
+            title: "Ahmed Elashry",
+            description: "Today is ahmed meeting.",
+            startTime: day,
+            endTime: DateTime(day.year,day.month,day.day,23,59,59),
+            endDate: DateTime(day.year,day.month,day.day,23,59,59),
+          ),
+
+        );
+      }
+      else if (days.last == day) {
+        _events.add(
+          CalendarEventData(
+            date: DateTime(day.year,day.month,day.day,00,00,00),
+            title: "",
+            description: "",
+            startTime: DateTime(day.year,day.month,day.day,00,00,00),
+            endTime:   day,
+            endDate:  day,
+          ),
+
+        );
+      }
+      else {
+        _events.add(
+          CalendarEventData(
+            date: DateTime(day.year,day.month,day.day,00,00,00),
+            title: "jj",
+            description: "",
+            startTime: DateTime(day.year,day.month,day.day,00,00,00),
+            endTime:  DateTime(day.year,day.month,day.day,23,59,00),
+            endDate:  DateTime(day.year,day.month,day.day,23,59,00),
+          ),
+
+        );
+      }
+    }
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
+
     return CalendarControllerProvider<Event>(
       controller: EventController<Event>()..addAll(_events),
       child: MaterialApp(
@@ -41,22 +93,13 @@ class MyApp extends StatelessWidget {
 }
 
 List<CalendarEventData<Event>> _events = [
-  CalendarEventData(
-    date: DateTime(2022, 09, 09),
-    title: "Project meeting",
-    description: "Today is project meeting.",
-    startTime: DateTime(2022,09,09),
-    endTime:   DateTime(2022,09,09),
-    endDate:   DateTime(2022,09,09),
-  ),
-
-  CalendarEventData(
-    date: DateTime(2022, 09, 08),
-    title: "Ahmed Elashry",
-    description: "Today is ahmed meeting.",
-    startTime: DateTime(2022,09,08),
-    endTime:   DateTime(2022,09,20),
-    endDate:   DateTime(2022,09,20),
-  ),
 
 ];
+List<DateTime> getDaysInBetween(DateTime startDate, DateTime endDate) {
+  List<DateTime> days = [];
+  for (int i = 0; i <= endDate.difference(startDate).inDays; i++) {
+    days.add(startDate.add(Duration(days: i)));
+  }
+  print(days);
+  return days;
+}
