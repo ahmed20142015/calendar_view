@@ -1,4 +1,4 @@
-#Mon Sep 12 18:59:30 EET 2022
+#Tue Sep 13 01:44:16 EET 2022
 base.0=C\:\\Users\\user\\Downloads\\calendar_view-1.0.0\\example\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
