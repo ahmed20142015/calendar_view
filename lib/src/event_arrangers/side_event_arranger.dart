@@ -126,6 +126,9 @@ class SideEventArranger<T extends Object?> extends EventArranger<T> {
     for (final event in events) {
       final startTime = event.startTime ?? DateTime.now();
       final endTime = event.endTime ?? startTime;
+      if(endTime.getTotalMinutes <= startTime.getTotalMinutes){
+        return [1];
+      }
       assert(
           !(endTime.getTotalMinutes <= startTime.getTotalMinutes),
           "Assertion fail for event: \n$event\n"

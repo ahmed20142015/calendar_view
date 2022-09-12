@@ -42,14 +42,21 @@ class MyApp extends StatelessWidget {
 
 List<CalendarEventData<Event>> _events = [
   CalendarEventData(
-    date: DateTime(2022, 09, 06, 18, 30),
+    date: DateTime(2022, 09, 09),
     title: "Project meeting",
     description: "Today is project meeting.",
-    startTime: DateTime(2022, 09, 06, 22, 30),
-    endTime: DateTime(2022,09, 20, 22,30,120),
-    endDate: DateTime(2022,09, 20, 22,30),
+    startTime: DateTime(2022,09,09),
+    endTime:   DateTime(2022,09,09),
+    endDate:   DateTime(2022,09,09),
   ),
 
-
+  CalendarEventData(
+    date: DateTime(2022, 09, 08),
+    title: "Ahmed Elashry",
+    description: "Today is ahmed meeting.",
+    startTime: DateTime(2022,09,08),
+    endTime:   DateTime(2022,09,20),
+    endDate:   DateTime(2022,09,20),
+  ),
 
 ];

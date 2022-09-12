@@ -178,6 +178,7 @@ class _CustomInternalWeekViewPageState<T extends Object?> extends State<CustomIn
                         setState(() {
                           widget.selectedDateTime =  filteredDates[index];
                         });
+                        print(widget.controller.getEventsOnDay(filteredDates[index]));
                       },
                       child: Container(
                         height: 44,
@@ -197,6 +198,11 @@ class _CustomInternalWeekViewPageState<T extends Object?> extends State<CustomIn
                 )
               ],
             ),
+          ),
+          Container(
+            height: widget.weekTitleHeight,
+            width: MediaQuery.of(context).size.width-(widget.weekTitleWidth),
+            color: Colors.blue,
           ),
           Expanded(
             child: SingleChildScrollView(
