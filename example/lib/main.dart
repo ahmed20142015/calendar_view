@@ -25,45 +25,18 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     var days = getDaysInBetween(DateTime(2022, 09, 12,13,00),DateTime(2022, 09, 14,13,00));
     for(var day in days){
-      if (days.first == day) {
-        _events.add(
-          CalendarEventData(
-            date: day,
-            title: "Ahmed Elashry",
-            description: "Today is ahmed meeting.",
-            startTime: day,
-            endTime: DateTime(day.year,day.month,day.day,23,59,59),
-            endDate: DateTime(day.year,day.month,day.day,23,59,59),
-          ),
+      _events.add(
+        CalendarEventData(
+          date: day,
+          title: "Ahmed Elashry",
+          description: "Today is ahmed meeting.",
+          startTime: day,
+          isDate: true,
+          endTime: day,
+          endDate: day,
+        ),
 
-        );
-      }
-      else if (days.last == day) {
-        _events.add(
-          CalendarEventData(
-            date: DateTime(day.year,day.month,day.day,00,00,00),
-            title: "",
-            description: "",
-            startTime: DateTime(day.year,day.month,day.day,00,00,00),
-            endTime:   day,
-            endDate:  day,
-          ),
-
-        );
-      }
-      else {
-        _events.add(
-          CalendarEventData(
-            date: DateTime(day.year,day.month,day.day,00,00,00),
-            title: "jj",
-            description: "",
-            startTime: DateTime(day.year,day.month,day.day,00,00,00),
-            endTime:  DateTime(day.year,day.month,day.day,23,59,00),
-            endDate:  DateTime(day.year,day.month,day.day,23,59,00),
-          ),
-
-        );
-      }
+      );
     }
     super.initState();
   }

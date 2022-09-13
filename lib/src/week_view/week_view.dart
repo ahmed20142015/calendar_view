@@ -139,6 +139,7 @@ class WeekView<T extends Object?> extends StatefulWidget {
   /// Defines size of the slots that provides long press callback on area
   /// where events are not there.
   final MinuteSlotSize minuteSlotSize;
+  final DateEventsWidgetBuilder? dateEventsWidgetBuilder;
 
   /// Main widget for week view.
   const WeekView({
@@ -169,6 +170,7 @@ class WeekView<T extends Object?> extends StatefulWidget {
     this.onDateLongPress,
     this.weekDays = WeekDays.values,
     this.showWeekends = true,
+    this.dateEventsWidgetBuilder,
     this.startDay = WeekDays.monday,
     this.minuteSlotSize = MinuteSlotSize.minutes60,
   })  : assert((timeLineOffset) >= 0,
@@ -342,7 +344,8 @@ class WeekViewState<T extends Object?> extends State<WeekView<T>> {
                                     dates[0].toString()),
                                 height: _height,
                                 width: _width,
-                                weekTitleWidth: _weekTitleWidth,
+                            dateEventsWidgetBuilder:widget.dateEventsWidgetBuilder??(e,w)=>Container(),
+                            weekTitleWidth: _weekTitleWidth,
                                 weekTitleHeight: widget.weekTitleHeight,
                                 weekDayBuilder: _weekDayBuilder,
                                 liveTimeIndicatorSettings:

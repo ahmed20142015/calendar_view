@@ -67,6 +67,7 @@ class InternalWeekViewPage<T extends Object?> extends StatelessWidget {
 
   /// Builder for week day title.
   final DateWidgetBuilder weekDayBuilder;
+  final DateEventsWidgetBuilder dateEventsWidgetBuilder;
 
   /// Height of week title.
   final double weekTitleHeight;
@@ -122,6 +123,7 @@ class InternalWeekViewPage<T extends Object?> extends StatelessWidget {
     required this.weekDays,
     required this.minuteSlotSize,
     required this.scrollConfiguration,
+    required this.dateEventsWidgetBuilder,
   }) : super(key: key);
 
   @override
@@ -158,13 +160,20 @@ class InternalWeekViewPage<T extends Object?> extends StatelessWidget {
                 ),
                 ...List.generate(
                   filteredDates.length,
-                  (index) => SizedBox(
-                    height: weekTitleHeight,
-                    width: weekTitleWidth,
-                    child: weekDayBuilder(
-                      filteredDates[index],DateTime.now()
-                    ),
+                  (index) => Column(
+                    children: [
+                      SizedBox(
+                        height: weekTitleHeight,
+                        width: weekTitleWidth,
+                        child: weekDayBuilder(
+                          filteredDates[index],DateTime.now()
+                        ),
+                      ),
+                      dateEventsWidgetBuilder(controller.getEventsOnDay(filteredDates[index]).where((element) => element.isDate!).toList(),weekTitleWidth),
+
+                    ],
                   ),
+
                 )
               ],
             ),
@@ -234,8 +243,7 @@ class InternalWeekViewPage<T extends Object?> extends StatelessWidget {
                                       eventArranger: eventArranger,
                                       eventTileBuilder: eventTileBuilder,
                                       scrollNotifier: scrollConfiguration,
-                                      events: controller
-                                          .getEventsOnDay(filteredDates[index]),
+                                      events: controller.getEventsOnDay(filteredDates[index]),
                                       heightPerMinute: heightPerMinute,
                                     ),
                                   ],
