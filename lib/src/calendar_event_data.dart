@@ -39,6 +39,7 @@ class CalendarEventData<T extends Object?> {
   final List<DateTime>? rangedDates;
   final bool? isRange;
   final bool? isDate;
+  final bool? showDetails;
 
   /// Stores all the events on [date]
   const CalendarEventData({
@@ -51,6 +52,7 @@ class CalendarEventData<T extends Object?> {
     this.rangedDates=const[],
     this.isRange=false,
     this.isDate=false,
+    this.showDetails=true,
     DateTime? endDate,
     required this.date,
   }) : _endDate = endDate;
@@ -68,6 +70,7 @@ class CalendarEventData<T extends Object?> {
         "rangedDates": rangedDates,
         "isRange": isRange,
         "isDate": isDate,
+        "showDetails": showDetails,
       };
 
   @override
