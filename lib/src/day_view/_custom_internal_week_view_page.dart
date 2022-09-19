@@ -11,7 +11,7 @@ import '../event_controller.dart';
 import '../modals.dart';
 import '../painters.dart';
 import '../typedefs.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' hide TextDirection;
 
 /// A single page for week view.
 class CustomInternalWeekViewPage<T extends Object?> extends StatefulWidget {
@@ -136,126 +136,129 @@ class _CustomInternalWeekViewPageState<T extends Object?> extends State<CustomIn
   @override
   Widget build(BuildContext context) {
     final filteredDates = _filteredDate();
-    return Container(
-      height: widget.height + widget.weekTitleHeight,
-      width: widget.width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          SizedBox(
-            width: widget.width,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: widget.weekTitleHeight,
-                  width: widget.timeLineWidth,
-                  child: Center(child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          if(widget.dates.contains(widget.selectedDateTime))
-                          Text('${widget.selectedDateTime.day}',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w300),),
-                          if(!widget.dates.contains(widget.selectedDateTime))
-                          Text('${widget.dates.first.day}',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w300),),
-                          if(widget.dates.contains(widget.selectedDateTime))
-                          Text(DateFormat('MMM').format(DateTime(0, widget.selectedDateTime.month)),style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
-                          if(!widget.dates.contains(widget.selectedDateTime))
-                          Text(DateFormat('MMM').format(DateTime(0, widget.dates.first.month)),style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
-                        ],
-                      ),
-                      Icon(Icons.keyboard_arrow_down_rounded)
-                    ],
-                  )),
-                ),
-                ...List.generate(
-                  filteredDates.length,
-                  (index) => SizedBox(
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Container(
+        height: widget.height + widget.weekTitleHeight,
+        width: widget.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            SizedBox(
+              width: widget.width,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
                     height: widget.weekTitleHeight,
-                    width: widget.weekTitleWidth,
-                    child: InkWell(
-                      onTap: (){
-                        setState(() {
-                          widget.selectedDateTime =  filteredDates[index];
-                        });
-                        print(widget.controller.getEventsOnDay(filteredDates[index]));
-                      },
-                      child: Container(
-                        height: 44,
-                        margin: EdgeInsets.symmetric(horizontal: 5),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: (filteredDates[index] == widget.selectedDateTime)?
-                              Color(0xff1479FF):Colors.transparent
+                    width: widget.timeLineWidth,
+                    child: Center(child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if(widget.dates.contains(widget.selectedDateTime))
+                            Text('${widget.selectedDateTime.day}',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w300),),
+                            if(!widget.dates.contains(widget.selectedDateTime))
+                            Text('${widget.dates.first.day}',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w300),),
+                            if(widget.dates.contains(widget.selectedDateTime))
+                            Text(DateFormat('MMM').format(DateTime(0, widget.selectedDateTime.month)),style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
+                            if(!widget.dates.contains(widget.selectedDateTime))
+                            Text(DateFormat('MMM').format(DateTime(0, widget.dates.first.month)),style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
+                          ],
                         ),
-                        child: widget.weekDayBuilder(
-                          filteredDates[index],widget.selectedDateTime
-                        ),
-                      ),
-                    ),
+                        Icon(Icons.keyboard_arrow_down_rounded)
+                      ],
+                    )),
                   ),
-                )
-              ],
+                  ...List.generate(
+                    filteredDates.length,
+                    (index) => SizedBox(
+                      height: widget.weekTitleHeight,
+                      width: widget.weekTitleWidth,
+                      child: InkWell(
+                        onTap: (){
+                          setState(() {
+                            widget.selectedDateTime =  filteredDates[index];
+                          });
+                          print(widget.controller.getEventsOnDay(filteredDates[index]));
+                        },
+                        child: Container(
+                          height: 44,
+                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: (filteredDates[index] == widget.selectedDateTime)?
+                                Color(0xff1479FF):Colors.transparent
+                          ),
+                          child: widget.weekDayBuilder(
+                            filteredDates[index],widget.selectedDateTime
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-         widget.dateEventsWidgetBuilder(widget.controller.getEventsOnDay(widget.selectedDateTime).where((element) => element.isDate!).toList(),MediaQuery.of(context).size.width-(widget.timeLineWidth)),
-          // Container(
-          //   height: widget.weekTitleHeight,
-          //   width: MediaQuery.of(context).size.width-(widget.timeLineWidth),
-          //   color: Colors.blue,
-          // ),
-          Expanded(
-            child: SingleChildScrollView(
-              controller: widget.scrollController,
-              child: SizedBox(
-                height: widget.height,
-                width: widget.width,
-                child: Stack(
-                  children: [
-                    CustomPaint(
-                      size: Size(widget.width, widget.height),
-                      painter: HourLinePainter(
-                        lineColor: widget.hourIndicatorSettings.color,
-                        lineHeight: widget.hourIndicatorSettings.height,
-                        offset: widget.timeLineWidth + widget.hourIndicatorSettings.offset,
-                        minuteHeight: widget.heightPerMinute,
-                        verticalLineOffset: widget.verticalLineOffset,
-                        showVerticalLine: widget.showVerticalLine,
+           widget.dateEventsWidgetBuilder(widget.controller.getEventsOnDay(widget.selectedDateTime).where((element) => element.isDate!).toList(),MediaQuery.of(context).size.width-(widget.timeLineWidth)),
+            // Container(
+            //   height: widget.weekTitleHeight,
+            //   width: MediaQuery.of(context).size.width-(widget.timeLineWidth),
+            //   color: Colors.blue,
+            // ),
+            Expanded(
+              child: SingleChildScrollView(
+                controller: widget.scrollController,
+                child: SizedBox(
+                  height: widget.height,
+                  width: widget.width,
+                  child: Stack(
+                    children: [
+                      CustomPaint(
+                        size: Size(widget.width, widget.height),
+                        painter: HourLinePainter(
+                          lineColor: widget.hourIndicatorSettings.color,
+                          lineHeight: widget.hourIndicatorSettings.height,
+                          offset: widget.timeLineWidth - widget.hourIndicatorSettings.offset,
+                          minuteHeight: widget.heightPerMinute,
+                          verticalLineOffset: widget.verticalLineOffset,
+                          showVerticalLine: widget.showVerticalLine,
+                        ),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: EventGenerator<T>(
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: EventGenerator<T>(
+                          height: widget.height,
+                          date: widget.selectedDateTime,
+                          onTileTap: widget.onTileTap,
+                          eventArranger: widget.eventArranger,
+                          events: widget.controller.getEventsOnDay(widget.selectedDateTime),
+                          heightPerMinute: widget.heightPerMinute,
+                          eventTileBuilder: widget.eventTileBuilder,
+                          scrollNotifier: widget.scrollConfiguration,
+                          width: widget.width -
+                              widget.timeLineWidth -
+                              widget.hourIndicatorSettings.offset -
+                              widget.verticalLineOffset,
+                        ),
+                      ),
+                      TimeLine(
+                        timeLineWidth: widget.timeLineWidth,
+                        hourHeight: widget.hourHeight,
                         height: widget.height,
-                        date: widget.selectedDateTime,
-                        onTileTap: widget.onTileTap,
-                        eventArranger: widget.eventArranger,
-                        events: widget.controller.getEventsOnDay(widget.selectedDateTime),
-                        heightPerMinute: widget.heightPerMinute,
-                        eventTileBuilder: widget.eventTileBuilder,
-                        scrollNotifier: widget.scrollConfiguration,
-                        width: widget.width -
-                            widget.timeLineWidth -
-                            widget.hourIndicatorSettings.offset -
-                            widget.verticalLineOffset,
+                        timeLineOffset: widget.timeLineOffset,
+                        timeLineBuilder: widget.timeLineBuilder,
                       ),
-                    ),
-                    TimeLine(
-                      timeLineWidth: widget.timeLineWidth,
-                      hourHeight: widget.hourHeight,
-                      height: widget.height,
-                      timeLineOffset: widget.timeLineOffset,
-                      timeLineBuilder: widget.timeLineBuilder,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
